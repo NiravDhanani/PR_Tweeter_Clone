@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home/X</title>
+
+    <!-- font -->
+    <link rel="stylesheet" href="/public/css/font.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/public/img/twitter_logo.png" type="image/x-icon">
+    <!-- webfont -->
+    <link rel="stylesheet" href="/public/css/remixicon.css">
+    <link rel="stylesheet" href="/public/css/all.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="d-flex">
+                <div class="col-lg-3 nav-section px-5">
+                    <div class="py-2">
+                        <div class="x-logo">
+                            <img src="/public/img/twitter_logo.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                    <nav>
+                        <ul>
+                            <li><a href="/home"><i class="ri-home-5-fill"></i>
+                                    <h3>Home</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="ri-search-line"></i>
+                                    <h3>Explore</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="ri-notification-2-line"></i>
+                                    <h3>Notification</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="ri-mail-line"></i>
+                                    <h3>Message</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="far fa-minus-square"></i>
+                                    <h3>Grok</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="ri-file-list-line"></i>
+                                    <h3>Lists</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="ri-bookmark-line"></i>
+                                    <h3>Bookmark</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="fas fa-user-friends"></i>
+                                    <h3>Comunities</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="ri-xing-fill"></i>
+                                    <h3>Premiun</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="far fa-user"></i>
+                                    <h3>Profile</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="ri-more-line"></i>
+                                    <h3>More</h3>
+                                </a></li>
+                        </ul>
+                        <button><a href="/home">Post</a></button>
+
+                        <div class="togollor" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="usres-box d-flex justify-content-between align-items-center">
+                                <div class="user-profile d-flex align-items-center">
+                                    <% if (currentUser) { %>
+                                        <div class="user-img">
+                                            <img src="<%= currentUser.profile %>" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="user-detalis">
+                                            <h4>
+                                                <%= currentUser.name %>
+                                            </h4>
+                                            <span>@<%= currentUser.username %></span>
+
+                                            <% } else { %>
+                                                <!-- Handle the case when the user is not logged in -->
+                                                <p>User not logged in</p>
+                                                <% } %>
+                                        </div>
+                                </div>
+                                <div class="more-icon">
+                                    <i class="ri-more-line"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-lg-5 content">
+                    <div class="all_random_post">
+                        <div class="upload_post">
+                            <form action="/UpdateTweet" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="EditId" value="<%= single.id %>">
+                                <div class="teewt-post">
+                                    <div class="tweet-post-user d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center ">
+                                            <div class="user-img">
+                                                <img src="<%= currentUser.profile %>" class="img-fluid" alt="">
+                                            </div>
+                                            <div class="d-flex t-p-u">
+                                                <h6>
+                                                    <%= currentUser.name %> &nbsp;
+                                                </h6>
+                                                <span>
+                                                    <%= currentUser.username%> &nbsp;
+                                                </span>
+                                                <%# new Date(val.post_date).toLocaleDateString('en-US', { month: 'short'
+                                                    , day: 'numeric' , time : 'numeric' }) %>
+                                                    <% const postDate=new Date(single.post_date); const currentDate=new
+                                                        Date(); const timeDifferenceInHours=Math.floor((currentDate -
+                                                        postDate) / (1000 * 60 * 60)); let displayDate; if
+                                                        (timeDifferenceInHours < 24) {
+                                                        displayDate=`${timeDifferenceInHours}h`; } else { const
+                                                        options={ month: 'short' , day: 'numeric' , hour: 'numeric' };
+                                                        displayDate=postDate.toLocaleDateString('en-US', options); } %>
+                                                        <span>
+                                                            <%= displayDate %>
+                                                        </span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tweet-post-content">
+                                        <textarea name="post_content" class="post_content f_20_28_600" style="border: 1px solid #71767b;"><%= single.post_content %></textarea>
+                                        <label class="tweet-img" for="img-tweet">
+                                            <img src="<%= single.post_imgs %>" alt="">
+                                        </label>
+                                        <input type="file" id="img-tweet" name="post_imgs">
+                                        <div class="tweet-post-action py-1">
+                                            <div>
+                                                <button type="submit" class="btn btn-primary" id="postButton">Update</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                           
+                            
+                        </div>
+                        <div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

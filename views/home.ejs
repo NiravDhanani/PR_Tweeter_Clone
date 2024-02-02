@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home/X</title>
+
+    <!-- font -->
+    <link rel="stylesheet" href="/public/css/font.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/public/img/twitter_logo.png" type="image/x-icon">
+    <!-- webfont -->
+    <link rel="stylesheet" href="/public/css/remixicon.css">
+    <link rel="stylesheet" href="/public/css/all.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="d-flex">
+                <div class="col-lg-3 nav-section px-5">
+                    <div class="py-2">
+                        <div class="x-logo">
+                            <img src="/public/img/twitter_logo.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                    <nav>
+                        <ul>
+                            <li><a href="/home"><i class="ri-home-5-fill"></i>
+                                    <h3>Home</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="ri-search-line"></i>
+                                    <h3>Explore</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="ri-notification-2-line"></i>
+                                    <h3>Notification</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="ri-mail-line"></i>
+                                    <h3>Message</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="far fa-minus-square"></i>
+                                    <h3>Grok</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="ri-file-list-line"></i>
+                                    <h3>Lists</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="ri-bookmark-line"></i>
+                                    <h3>Bookmark</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="fas fa-user-friends"></i>
+                                    <h3>Comunities</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="ri-xing-fill"></i>
+                                    <h3>Premiun</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="far fa-user"></i>
+                                    <h3>Profile</h3>
+                                </a></li>
+                            <li><a href="/home"><i class="ri-more-line"></i>
+                                    <h3>More</h3>
+                                </a></li>
+                        </ul>
+                        <button><a href="/home">Post</a></button>
+
+                        <div class="togollor" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="usres-box d-flex justify-content-between align-items-center">
+                                <div class="user-profile d-flex align-items-center">
+                                    <% if (currentUser) { %>
+                                        <div class="user-img">
+                                            <img src="<%= currentUser.profile %>" class="img-fluid" alt="">
+                                        </div>
+                                        <div class="user-detalis">
+                                            <h4>
+                                                <%= currentUser.name %>
+                                            </h4>
+                                            <span>@<%= currentUser.username %></span>
+
+                                            <% } else { %>
+                                                <!-- Handle the case when the user is not logged in -->
+                                                <p>User not logged in</p>
+                                                <% } %>
+                                        </div>
+                                </div>
+                                <div class="more-icon">
+                                    <i class="ri-more-line"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-lg-5 content">
+                    <div class="all_random_post">
+                        <div class="post_section_header content-head">
+                            <div class="f_15_18_500 d-flex py-3 text-center white_color page-head">
+                                <div class="col-lg-5">
+                                    <a href="/home" style="text-decoration: none; color: white;">
+                                        <span class="post_section_header_active py-3 position-relative">For you</span>
+                                    </a>
+                                </div>
+                                <div class="col-lg-5">
+                                    <a href="/following" style="text-decoration: none; color: white;">
+                                        <span class="py-3 position-relative">Following</span>
+                                    </a>
+                                </div>
+                                <div class="col-lg-2">
+                                    <span class="py-3 position-relative"><i class="ri-settings-3-line"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="upload_post">
+                            <form action="/addTweet" method="post" enctype="multipart/form-data">
+                                <div class="d-flex py-3 align-items-center">
+                                    <input type="hidden" name="userid" value="<%= currentUser.id %>">
+                                    <div class="col-lg-12 ps-3 d-flex" style="border-bottom: 1px solid #71767b;">
+                                        <div class="col-lg-1">
+
+                                            <div class="user-img">
+                                                <img src="<%= currentUser.profile  %>" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-11 " style="padding-left: 10px;">
+                                            <div class="pb-3">
+                                                <!-- <input type="text" name="post_content" class="post_content f_20_28_600" placeholder="What is happening?!"> -->
+                                                <textarea name="post_content" class="post_content f_20_28_600"
+                                                    placeholder="What is happening?!" maxlength="280"
+                                                    oninput="checkButtonState()"></textarea>
+                                                <span id="selectedImagesContainer"
+                                                    style="width: 60px; height: 60px;"></span>
+                                                <span class="d-block pt-3"><i class="fas fa-globe-americas"></i>
+                                                    Everyone can reply</span>
+                                            </div>
+                                            <div class="p-2 d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <label for="post_imgs" class="blue_color post_imgs_label"><i
+                                                            class="ri-image-2-line"></i></label>
+                                                    <input type="file" accept="image/*" name="post_imgs" id="post_imgs"
+                                                        class="d-none" onchange="checkButtonState()" multiple>
+                                                </div>
+                                                <div>
+                                                    <button type="submit" class="btn btn-primary"
+                                                        id="postButton">Post</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div>
+                            <% allTweet.map((val)=> { %>
+
+                                <div class="Tweeter-post">
+                                    <div class="Tweeter-post-user d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center ">
+                                            <div class="user-img">
+                                                <img src="<%= currentUser.profile %>" class="img-fluid" alt="">
+                                            </div>
+                                            <div class="d-flex" style="padding-left: 10px;">
+                                                <h6>
+                                                    <%= currentUser.name %> &nbsp;
+                                                </h6>
+                                                <span>
+                                                    <%= currentUser.username%> &nbsp;
+                                                </span>
+                                                <%# new Date(val.post_date).toLocaleDateString('en-US', { month: 'short'
+                                                    , day: 'numeric' , time : 'numeric' }) %>
+                                                    <% const postDate=new Date(val.post_date); const currentDate=new
+                                                        Date(); const timeDifferenceInHours=Math.floor((currentDate -
+                                                        postDate) / (1000 * 60 * 60)); let displayDate; if
+                                                        (timeDifferenceInHours < 24) {
+                                                        displayDate=`${timeDifferenceInHours}h`; } else { const
+                                                        options={ month: 'short' , day: 'numeric' , hour: 'numeric' };
+                                                        displayDate=postDate.toLocaleDateString('en-US', options); } %>
+                                                        <span>
+                                                            <%= displayDate %>
+                                                        </span>
+
+                                            </div>
+                                        </div>
+                                        <i class="ri-more-line" data-bs-toggle="dropdown" aria-expanded="false"
+                                            style="cursor: pointer; "></i>
+                                        <ul class="dropdown-menu" style="inset: 0px auto auto -140px !important">
+                                            <li><a class="dropdown-item text-danger"
+                                                    href="/DeleteTweet?id=<%= val.id %>"><i
+                                                        class="ri-delete-bin-6-line"></i> Delete</a></li>
+                                            <li><a class="dropdown-item text-success"
+                                                    href="/EditTweet?id=<%= val.id %>"><i class="ri-pencil-line"></i>
+                                                    Edit</a></li>
+                                        </ul>
+                                    </div>
+
+
+                                    <div class="Tweeter-post-content">
+                                        <p>
+                                            <%= val.post_content %>
+                                        </p>
+                                        <div class="Tweeter-img">
+                                            <img src="<%= val.post_imgs %>" alt="">
+                                        </div>
+                                        <div class="Tweeter-post-action">
+                                            <ul class="d-flex justify-content-between">
+                                                <li>
+                                                    <i class="ri-chat-1-line"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa-solid fa-right-left"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="ri-heart-line"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="ri-bar-chart-line"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="ri-bookmark-line"></i>
+                                                    <i class="ri-upload-2-line"></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <% }) %>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 description-section">
+                    <div class="descript">
+
+                        <div class="search-bar">
+                            <input type="text" placeholder="search">
+                        </div>
+
+                        <div class="subscription">
+                            <div class="sub-premium">
+                                <h3 class="sub-head">Subscribe to Premium</h3>
+                                <p class="sub-pera">Subscribe to unlock new features and if eligible, receive a share of
+                                    ads revenue.</p>
+                                <button class="sub-btn">Subscribe</button>
+                            </div>
+                        </div>
+
+                        <div class="whats-Happening">
+                            <div class="p-3">
+                                <h3 class='description-head'>What’s happening</h3>
+
+                                <div class="description">
+                                    <span class="trend-title">Trend in India</span>
+                                    <h4 class="trend-discr">#BoycottZerodha</h4>
+                                    <p class="trend-title">1061 post</p>
+                                </div>
+
+                                <div class="description">
+                                    <span class="trend-title">Trend in India</span>
+                                    <h4 class="trend-discr">#BoycottZerodha</h4>
+                                    <p class="trend-title">1061 post</p>
+                                </div>
+
+                                <div class="description">
+                                    <span class="trend-title">Trend in India</span>
+                                    <h4 class="trend-discr">#BoycottZerodha</h4>
+                                    <p class="trend-title">1061 post</p>
+                                </div>
+
+                                <div class="description">
+                                    <span class="trend-title">Trend in India</span>
+                                    <h4 class="trend-discr">#BoycottZerodha</h4>
+                                    <p class="trend-title">1061 post</p>
+                                </div>
+
+                                <div class="description">
+                                    <span class="trend-title">Trend in India</span>
+                                    <h4 class="trend-discr">#BoycottZerodha</h4>
+                                    <p class="trend-title">1061 post</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="who-follow">
+                            <div class="p-3">
+                                <h3 class='description-head'>Who to follow</h3>
+
+                                <div class="follow d-flex justify-content-between">
+                                    <div class="d-flex">
+                                        <div class="follow-img">
+                                            <img src="/public/img/google-symbol.png" alt="">
+                                        </div>
+                                        <div class="follow-details">
+                                            <h4 class="trend-discr">Google</h4>
+                                            <span class="trend-title">#google</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="follow ">
+                                        <button class="follow-btn">Follow</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="term-condition">
+                            <span class="terms">
+                                Terms of Service Privacy Policy Cookie Policy Accessibility
+                                Ads info More © 2024 X Corp.</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+
+    <!-- ---Edit_Tweet--- -->
+
+    <!-- ---Edit_Tweet--- -->
+
+
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

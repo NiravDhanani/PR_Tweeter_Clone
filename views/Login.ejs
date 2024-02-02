@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/X</title>
+
+    <!-- font -->
+    <link rel="stylesheet" href="/public/css/font.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/public/img/twitter_logo.png" type="image/x-icon">
+    <!-- webfont -->
+    <link rel="stylesheet" href="/public/css/remixicon.css">
+    <link rel="stylesheet" href="/public/css/all.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+
+<body>
+
+    <section class="py-100 vh-100">
+        <div class="overflow-hidden col-xx-12">
+            <div class="row">
+                <div class="col-xxl-6 d-flex justify-content-center align-items-center">
+                    <div class="index-logo">
+                        <img src="/public/img/twitter_logo.png" alt="" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-xxl-6">
+                    <div class="user-section">
+                        <div class="first-heading">
+                            <h3>Happening now</h3>
+                        </div>
+                        <div class="w-30 signup-option">
+                            <h5>Join today.</h5>
+                            <a href="/">
+                                <div class="signup-google">
+                                    <div class="signup-with d-flex align-items-center">
+                                        <img src="/public/img/google-symbol.png" class="img-fluid" alt="">
+                                        <span>Sign up with Google</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="/">
+                                <div class="signup-apple">
+                                    <div class="signup-with d-flex align-items-center">
+                                        <img src="/public/img/apple.png" class="img-fluid" alt="">
+                                        <span>Sign up with Apple</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="or-option">
+                                <p>or</p>
+                                <div class="option-abs">
+                                    <span>or</span>
+                                </div>
+                            </div>
+                            <div class="create-ac">
+                                <a href="#" class="create_acc d-block f_15_18_500" data-bs-target="#exampleModalToggle"
+                                    data-bs-toggle="modal">Create account</a>
+                                <span class="etx text">By signing up, you agree to the <a href="/">Terms of Service</a>
+                                    and <a href="/">Privacy Policy</a>, including <a href="/">Cookie Use.</a></span>
+                            </div>
+                            <div class="login-ac my-5">
+                                <p>Already have an account?</p>
+                                <a href="#" class="d-block f_15_18_500 text-center"
+                                    data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">Sign in</a>
+                            </div>
+
+                            <form action="/addUser" method="post" class="register" enctype="multipart/form-data">
+                                <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
+                                    data-bs-backdrop="static" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header justify-content-start">
+                                                <button type="button"
+                                                    class="btn-close d-flex justify-content-center align-items-center white_color"
+                                                    data-bs-dismiss="modal" aria-label="Close" style="margin: 0;"><i
+                                                        class="ri-close-line"></i></button>
+                                                <h1 class="modal-title ms-3 fs-5 white_color"
+                                                    id="exampleModalToggleLabel">Step 1 of 2</h1>
+                                            </div>
+                                            <div class="modal-body mx-5">
+                                                <div class="modal_body_contetnt">
+                                                    <div>
+                                                        <h3 class="white_color">Create your account</h3>
+                                                    </div>
+                                                    <div>
+                                                        <div class="d-flex">
+                                                            <div class="w-50 position-relative my-4">
+                                                                <input type="text" name="f_name" id="name"
+                                                                    class="white_color w-100" maxlength="25"
+                                                                    oninput="countCharacters()">
+                                                                <div class="input_letter" id="character-counter">0 / 50
+                                                                </div>
+                                                                <span class="input_name">First Name</span>
+                                                            </div>
+                                                            <div class="w-50 position-relative my-4">
+                                                                <input type="text" name="l_name" id="name"
+                                                                    class="white_color w-100" maxlength="25"
+                                                                    oninput="countCharacters()">
+                                                                <div class="input_letter" id="character-counter">0 / 25
+                                                                </div>
+                                                                <span class="input_name">Last Name</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="position-relative my-4">
+                                                            <input type="tel" name="email" id="email"
+                                                                class="white_color w-100" required>
+                                                            <span class="input_name">Email</span>
+                                                        </div>
+                                                        <div class="position-relative my-4">
+                                                            <input type="tel" name="phone" id="phone"
+                                                                class="white_color w-100" pattern="[0-9]{10}" required>
+                                                            <span class="input_name">Phone</span>
+                                                        </div>
+                                                        <div class="position-relative my-4">
+                                                            <input type="file" name="profile" id="profile"
+                                                                class="white_color w-100" required style="display:none" >
+                                                           <label for="profile"> <span class="input_name"><i class="ri-upload-2-line"></i>Profile Photo</label>
+                                                        </div>
+                                                        <!-- <div class="position-relative my-4">
+                                                    <input type="date" name="dob" id="dob">
+                                                    <span class="input_name">Date of birth</span>
+                                                </div> -->
+                                                    </div>
+                                                    <div>
+                                                        <a class="next_btn f_15_18_500 d-block text-center black_color w-100"
+                                                            data-bs-target="#exampleModalToggle2"
+                                                            data-bs-toggle="modal">Next</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
+                                    data-bs-backdrop="static" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header justify-content-start">
+                                                <button type="button"
+                                                    class="btn-close d-flex justify-content-center align-items-center white_color"
+                                                    data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
+                                                    style="margin: 0;"><i class="ri-arrow-left-line"></i></button>
+                                                <h1 class="modal-title ms-3 fs-5 white_color"
+                                                    id="exampleModalToggleLabel">Step 2 of 2</h1>
+                                            </div>
+                                            <div class="modal-body mx-5">
+                                                <div class="modal_body_contetnt">
+                                                    <div>
+                                                        <h3 class="white_color">Create your account</h3>
+                                                    </div>
+                                                    <div>
+                                                        <div class="position-relative my-4">
+                                                            <input type="password" name="password" id="password"
+                                                                class="white_color w-100">
+                                                            <div class="eye position-absolute"
+                                                                onclick="showPassword('password','pass')">
+                                                                <img src="/public/img/eye.svg" id="pass"
+                                                                    alt="showPassword">
+                                                            </div>
+                                                            <span class="input_name">Password</span>
+                                                        </div>
+                                                        <div class="position-relative my-4">
+                                                            <input type="password" name="c_password" id="c_password"
+                                                                class="white_color w-100">
+                                                            <div class="eye position-absolute"
+                                                                onclick="showPassword('c_password','c_pass')">
+                                                                <img src="/public/img/eye.svg" id="c_pass"
+                                                                    alt="showPassword">
+                                                            </div>
+                                                            <span class="input_name">Confirm Password</span>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <!-- <a class="next_btn f_15_18_500 d-block text-center black_color w-100" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Next</a> -->
+                                                        <button
+                                                            class="next_btn f_15_18_500 d-block text-center black_color w-100"
+                                                            type="submit">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                            <form action="/loginUser" method="post" class="register">
+                                <div class="modal fade" id="exampleModalToggle3" aria-hidden="true"
+                                    data-bs-backdrop="static" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header justify-content-start">
+                                                <button type="button"
+                                                    class="btn-close d-flex justify-content-center align-items-center white_color"
+                                                    data-bs-dismiss="modal" aria-label="Close" style="margin: 0;"><i
+                                                        class="ri-close-line"></i></button>
+                                                <!-- <h1 class="modal-title ms-3 fs-5 white_color" id="exampleModalToggleLabel">Step 2 of 2</h1> -->
+                                            </div>
+                                            <div class="modal-body mx-5">
+                                                <div class="modal_body_contetnt">
+                                                    <div>
+                                                        <h3 class="white_color">Login your account</h3>
+                                                    </div>
+                                                    <div>
+                                                        <div class="position-relative my-4">
+                                                            <input type="email" name="email" id="login_email"
+                                                                class="white_color w-100" required>
+                                                            <span class="input_name">Email</span>
+                                                        </div>
+                                                        <div class="position-relative my-4">
+                                                            <input type="password" name="password" id="l_password"
+                                                                class="white_color w-100">
+                                                            <div class="eye position-absolute"
+                                                                onclick="showPassword('l_password','c_pass')">
+                                                                <img src="/public/img/eye.svg" id="c_pass"
+                                                                    alt="showPassword">
+                                                            </div>
+                                                            <span class="input_name">Password</span>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <!-- <a class="next_btn f_15_18_500 d-block text-center black_color w-100" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Next</a> -->
+                                                        <button
+                                                            class="next_btn f_15_18_500 d-block text-center black_color w-100"
+                                                            type="submit">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/js/jquery-3.7.0.min.js"></script>
+    <script src="/public/js/script.js"></script>
+    <script>
+        function countCharacters() {
+          const name = document.getElementById('name');
+          const characterCounter = document.getElementById('character-counter');
+    
+          // Get the length of the input value
+          const charCount = name.value.length;
+    
+          characterCounter.textContent = `${charCount} / 50`;
+        }
+        
+      </script>
+</body>
+
+</html>
