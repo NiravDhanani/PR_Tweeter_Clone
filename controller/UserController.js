@@ -5,7 +5,9 @@ const fs = require('fs');
 
 const homePage = async(req, res)=>{
     try{
-        let allTweet = await TweetModel.find({userId : res.locals.users._id}).populate("userId");
+        let userId = res.locals.users._id;
+
+        let allTweet = await TweetModel.find({userId}).populate("userId");
         let UserDetalis = await SignupModel.find({});
         let editId = req.query.id;
         let single = await TweetModel.findById(editId);
@@ -114,8 +116,17 @@ const updateTweet = async (req, res) => {
 };
 
 
-const following = (req,res) =>{
-    return res.render('following')
+const following = async (req,res) =>{
+    try{
+        let allTweet = await TweetModel.find({userId : res.locals.users._id}).populate("userId");
+        let UserDetalis = await SignupModel.find({});
+        let editId = req.query.id;
+        let single = await TweetModel.findById(editId);
+        return res.render('following', { allTweet, UserDetalis, single });
+    }catch(err){
+        console.log(err);
+        return false;
+    }
 }
 
 

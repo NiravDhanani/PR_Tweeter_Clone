@@ -161,7 +161,83 @@
 
                         <!-- map  -->
 
+                        <div>
+                            <% allTweet.map((val)=> { %>
 
+                                <div class="Tweeter-post">
+                                    <div class="Tweeter-post-user d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center ">
+                                            <div class="user-img">
+                                                <img src="<%= currentUser.profile %>" class="img-fluid" alt="">
+                                            </div>
+                                            <div class="d-flex" style="padding-left: 10px;">
+                                                <h6>
+                                                    <%= currentUser.name %> &nbsp;
+                                                </h6>
+                                                <span>
+                                                    <%= currentUser.username%> &nbsp;
+                                                </span>
+                                                <%# new Date(val.post_date).toLocaleDateString('en-US', { month: 'short'
+                                                    , day: 'numeric' , time : 'numeric' }) %>
+                                                    <% const postDate=new Date(val.post_date); const currentDate=new
+                                                        Date(); const timeDifferenceInHours=Math.floor((currentDate -
+                                                        postDate) / (1000 * 60 * 60)); let displayDate; if
+                                                        (timeDifferenceInHours < 24) {
+                                                        displayDate=`${timeDifferenceInHours}h`; } else { const
+                                                        options={ month: 'short' , day: 'numeric' , hour: 'numeric' };
+                                                        displayDate=postDate.toLocaleDateString('en-US', options); } %>
+                                                        <span>
+                                                            <%= displayDate %>
+                                                        </span>
+
+                                            </div>
+                                        </div>
+                                        <i class="ri-more-line" data-bs-toggle="dropdown" aria-expanded="false"
+                                            style="cursor: pointer; "></i>
+                                        <ul class="dropdown-menu" style="inset: 0px auto auto -140px !important">
+                                            <li><a class="dropdown-item text-danger"
+                                                    href="/DeleteTweet?id=<%= val.id %>"><i
+                                                        class="ri-delete-bin-6-line"></i> Delete</a></li>
+                                            <li><a class="dropdown-item text-success"
+                                                    href="/EditTweet?id=<%= val.id %>"><i class="ri-pencil-line"></i>
+                                                    Edit</a></li>
+                                        </ul>
+                                    </div>
+
+
+                                    <div class="Tweeter-post-content">
+                                        <p>
+                                            <%= val.post_content %>
+                                        </p>
+                                        <div class="Tweeter-img">
+                                            <img src="<%= val.post_imgs %>" alt="">
+                                        </div>
+                                        <div class="Tweeter-post-action">
+                                            <ul class="d-flex justify-content-between">
+                                                <li>
+                                                    <i class="ri-chat-1-line"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa-solid fa-right-left"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="ri-heart-line"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="ri-bar-chart-line"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="ri-bookmark-line"></i>
+                                                    <i class="ri-upload-2-line"></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <% }) %>
+                        </div>
 
 
                     </div>
